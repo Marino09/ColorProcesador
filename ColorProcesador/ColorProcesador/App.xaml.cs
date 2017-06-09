@@ -13,8 +13,8 @@ namespace ColorProcesador
         {
             InitializeComponent();
 
-            var page = new TabbedPage();
-            MainPage = new MyPage();
+            //var page = new TabbedPage();
+            MainPage = new NavigationPage(new MyPage());
 
            // MainPage = new ColorProcesador.MainPage();  
         }

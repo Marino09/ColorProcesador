@@ -67,10 +67,20 @@ namespace ColorProcesador
             this.Content = layout;
         }
 
-        void OnButtonClicked(object sender, EventArgs e)
+       async void OnButtonClicked(object sender, EventArgs e)
         {
             var button = (Button)sender;
             label.TextColor = button.BackgroundColor;
+
+            //var newPage = new ContentPage();
+
+            var newPage2 = new Second();
+            
+            newPage2.BackgroundColor=button.BackgroundColor;
+            
+           // await Navigation.PushAsync(newPage);
+            await Navigation.PushModalAsync(newPage2);
+            
         }
     }
 }
