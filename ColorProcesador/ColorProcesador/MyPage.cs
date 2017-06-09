@@ -36,7 +36,7 @@ namespace ColorProcesador
 
             var RedColorButton = new Button()
             {
-                Text = "RED",
+                Text = "REDO",
                 BackgroundColor = Color.Red,
                 TextColor = Color.White,
                 BorderWidth = 1,
@@ -47,8 +47,11 @@ namespace ColorProcesador
             var GreenColorButton = new Button() { Text = "GREEN", BackgroundColor = Color.Green, TextColor = Color.White };
 
             RedColorButton.Clicked += OnButtonClicked;
+            RedColorButton.Clicked += OnNextPageButtonClicked;
             BlueColorButton.Clicked += OnButtonClicked;
+            BlueColorButton.Clicked += OnNextPageButtonClicked;
             GreenColorButton.Clicked += OnButtonClicked;
+            GreenColorButton.Clicked += OnNextPageButtonClicked;
 
             ColorText.TextChanged += (sender, e) =>
             {
@@ -67,20 +70,26 @@ namespace ColorProcesador
             this.Content = layout;
         }
 
-       async void OnButtonClicked(object sender, EventArgs e)
+       void OnButtonClicked(object sender, EventArgs e)
         {
             var button = (Button)sender;
             label.TextColor = button.BackgroundColor;
 
             //var newPage = new ContentPage();
 
-            var newPage2 = new Second();
             
-            newPage2.BackgroundColor=button.BackgroundColor;
+            
+           // newPage2.BackgroundColor=button.BackgroundColor;
             
            // await Navigation.PushAsync(newPage);
-            await Navigation.PushModalAsync(newPage2);
             
+            
+        }
+
+        async void OnNextPageButtonClicked(object sender, EventArgs e)
+        {
+            var button = (Button)sender;
+            await Navigation.PushAsync(new Second(button.Text, button.BackgroundColor));
         }
     }
 }
